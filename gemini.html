@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DavGenerator Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                100: "#1E2028",
+                200: "#2D303E",
+                300: "#3C4051",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .gradient-bg {
+        background: linear-gradient(-45deg, #1e2028, #2d303e, #3c4051, #4b5066);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-100 text-gray-200 min-h-screen flex flex-col">
+    <nav class="bg-dark-300 shadow-lg gradient-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="flex-shrink-0 flex items-center">
+              <img class="h-8 w-auto" src="imagen.png" alt="DavC Logo" />
+              <span class="ml-2 text-xl font-bold text-blue-400"
+                >DavC Analizer</span
+              >
+            </a>
+          </div>
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn"
+              >Home</a
+            >
+
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-2s"
+              >Analyzer</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+      <div class="container mx-auto px-4">
+        <div
+          class="bg-dark-200 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl p-8 max-w-2xl mx-auto animate__animated animate__fadeIn"
+        >
+          <h1
+            class="text-4xl font-bold mb-6 text-center text-blue-400 animate__animated animate__pulse animate__infinite"
+          >
+            DavAnalizator
+          </h1>
+          <div class="mb-6">
+            <label for="inputQuestion" class="block text-gray-300 mb-2 text-lg">
+              Escribe tu Pseudocódigo para encontrar errores lógicos, de
+              sintaxis, etc.
+            </label>
+            <textarea
+              id="inputQuestion"
+              class="w-full p-4 text-lg bg-dark-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 ease-in-out resize-y min-h-[150px]"
+              placeholder="Escribe la descripción del código aquí..."
+            ></textarea>
+          </div>
+          <button
+            id="submitButton"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 animate__animated animate__pulse animate__infinite"
+          >
+            Analizar
+          </button>
+          <div class="mt-6">
+            <label for="responseText" class="block text-gray-300 mb-2 text-lg">
+              Respuesta del Análisis:
+            </label>
+            <div
+              id="responseText"
+              class="w-full p-4 text-lg bg-dark-300 rounded-lg border border-gray-600 min-h-[200px] max-h-[400px] overflow-y-auto focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+            >
+              El análisis del código aparecerá aquí...
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="mt-8 text-center text-gray-400 animate__animated animate__fadeInUp p-4"
+    >
+      <p>Creado por <span class="font-bold text-blue-400">DavC</span></p>
+      <p class="mt-2">&copy; 2024- Sin nada que Hacer</p>
+    </footer>
+
+    <script type="module">
+      import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+      const API_KEY = "AIzaSyBFwb4V-OJrWNoJmBob26E4JCsVjvSQiUE";
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({
+        model: "gemini-1.5-pro",
+        systemInstruction: `
+You are a bot specialized in Pseudocode and Pseint. Always provide your answers in Spanish.
+Your primary task is to review pseudocode and provide a complete analysis. If the user provides
+valid pseudocode, follow this process:
+
+Review Format:
+Presentacion: "**Hola soy DavBot**💻"
+
+1. Qué hace el Programa: [explain what it does]
+2. Errores de Lógica: [If there are any, write down the errors; otherwise, state that it's fine]
+3. Sign off with '**DavBot ha terminado su trabajo**🦉'
+
+If the input provided by the user is not related to pseudocode:
+1. Respond with: "Lo siento, solo fui entrenado para revisar pseudocódigo en Pseint y no puedo responder otras preguntas. '2 line break' \nComunicate con David Si quieres Más informacion de como me entreno (●'◡'●) "
+
+2. Do not provide any further response beyond this.
+`,
+        temperature: 0.4,
+      });
+
+      document
+        .getElementById("submitButton")
+        .addEventListener("click", async () => {
+          const description = document.getElementById("inputQuestion").value;
+          const responseText = document.getElementById("responseText");
+
+          if (description.trim() === "") {
+            alert("Por favor, ingresa una descripción del código.");
+            return;
+          }
+
+          responseText.innerHTML =
+            '<div class="animate-pulse">Analizando...</div>';
+
+          try {
+            const result = await model.generateContent(description);
+            const markdownText = result.response.text();
+            const htmlContent = marked.parse(markdownText);
+            responseText.innerHTML = htmlContent;
+            responseText.classList.add("animate__animated", "animate__fadeIn");
+          } catch (error) {
+            console.error("Error generando el código:", error);
+            responseText.textContent = "Error generando el código.";
+          }
+        });
+    </script>
+  </body>
+</html>

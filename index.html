@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DavC generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       rel="stylesheet"
@@ -28,11 +27,57 @@
         },
       };
     </script>
+    <style>
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .gradient-bg {
+        background: linear-gradient(-45deg, #1e2028, #2d303e, #3c4051, #4b5066);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+    </style>
   </head>
   <body
-    class="bg-dark-100 text-gray-200 min-h-screen flex flex-col justify-between p-4"
+    class="bg-dark-100 text-gray-200 min-h-screen flex flex-col justify-between"
   >
-    <main class="flex-grow flex items-center justify-center w-full">
+    <nav class="bg-dark-300 shadow-lg gradient-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="flex-shrink-0 flex items-center">
+              <img class="h-8 w-auto" src="imagen.png" alt="DavC Logo" />
+              <span class="ml-2 text-xl font-bold text-blue-400"
+                >DavC Generator</span
+              >
+            </a>
+          </div>
+          <div class="flex items-center">
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn"
+              >Home</a
+            >
+
+            <a
+              href="gemini.html"
+              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-2s"
+              >Analyzer</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center w-full p-4">
       <div
         class="container bg-dark-200 rounded-xl shadow-2xl p-6 md:p-8 max-w-4xl w-full animate__animated animate__fadeIn"
       >
@@ -68,8 +113,9 @@
         />
       </div>
     </main>
+
     <footer
-      class="mt-8 text-center text-gray-400 animate__animated animate__fadeInUp"
+      class="mt-8 text-center text-gray-400 animate__animated animate__fadeInUp p-4"
     >
       <p>Creado por <span class="font-bold text-blue-400">DavC</span></p>
       <p class="mt-2">&copy; 2024- Sin nada que Hacer</p>
