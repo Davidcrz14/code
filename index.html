@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DavC generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="imagen.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                100: "#1E2028",
+                200: "#2D303E",
+                300: "#3C4051",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-dark-100 text-gray-200 min-h-screen flex flex-col justify-between p-4"
+  >
+    <main class="flex-grow flex items-center justify-center w-full">
+      <div
+        class="container bg-dark-200 rounded-xl shadow-2xl p-6 md:p-8 max-w-4xl w-full animate__animated animate__fadeIn"
+      >
+        <h1
+          class="text-3xl md:text-4xl font-bold text-blue-400 mb-6 animate__animated animate__bounceInDown"
+        >
+          DavGenerator Pseint ヽ(^o^)ノ
+        </h1>
+        <textarea
+          id="codeInput"
+          class="w-full h-48 md:h-64 p-4 mb-6 font-mono text-sm bg-dark-300 text-gray-200 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 ease-in-out"
+          placeholder="Acá puedes ingresar tu Pseucodigo y Presionar Generar Imagen Para ver la Vista Previa ヽ(•‿•)ノ"
+        ></textarea>
+        <button
+          id="generateImage"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 animate__animated animate__pulse animate__infinite"
+        >
+          Generar Imagen
+        </button>
+        <canvas id="codeCanvas" class="hidden"></canvas>
+        <a
+          id="downloadLink"
+          href="#"
+          download="imagen_code_uwu.png"
+          class="hidden mt-6 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+        >
+          Descargar Imagen
+        </a>
+        <img
+          id="previewImage"
+          class="hidden mt-6 max-w-full h-auto border border-gray-600 rounded-lg shadow-md animate__animated animate__zoomIn"
+          alt="Previsualización del código generado"
+        />
+      </div>
+    </main>
+    <footer
+      class="mt-8 text-center text-gray-400 animate__animated animate__fadeInUp"
+    >
+      <p>Creado por <span class="font-bold text-blue-400">DavC</span></p>
+      <p class="mt-2">&copy; 2024- Sin nada que Hacer</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

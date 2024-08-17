@@ -1,0 +1,88 @@
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Estilo personalizado para la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d303e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Estilos adicionales */
+.container {
+  backdrop-filter: blur(10px);
+  background-color: rgba(45, 48, 62, 0.8);
+}
+
+textarea {
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  transform: scale(1.02);
+}
+
+#generateImage:active {
+  transform: scale(0.95);
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  textarea {
+    height: 200px;
+  }
+
+  #generateImage {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
