@@ -1,7 +1,7 @@
 document.getElementById("generateImage").addEventListener("click", function () {
   const code = document.getElementById("codeInput").value;
   if (!code.trim()) {
-    alert("Por favor, ingresa código PSeint.");
+    alert("ESCRIBE TU CODIGO");
     return;
   }
 
@@ -125,15 +125,43 @@ document.getElementById("generateImage").addEventListener("click", function () {
     return keywords[word] || "#abb2bf";
   }
 
+  function colorComment(line) {
+    const commentIndex = line.indexOf("//");
+    if (commentIndex !== -1) {
+      return {
+        code: line.substring(0, commentIndex),
+        comment: line.substring(commentIndex),
+      };
+    }
+    return null;
+  }
+
   let y = padding + 40;
   lines.forEach((line) => {
-    const words = line.split(/(\s+)/);
-    let x = padding;
-    words.forEach((word) => {
-      context.fillStyle = colorKeyword(word.trim());
-      context.fillText(word, x, y);
-      x += context.measureText(word).width;
-    });
+    const comment = colorComment(line);
+    if (comment) {
+      // Dibuja el código antes del comentario
+      const words = comment.code.split(/(\s+)/);
+      let x = padding;
+      words.forEach((word) => {
+        context.fillStyle = colorKeyword(word.trim());
+        context.fillText(word, x, y);
+        x += context.measureText(word).width;
+      });
+
+      // Dibuja el comentario
+      context.fillStyle = "#6A9955"; // Color verde para comentarios
+      context.fillText(comment.comment, x, y);
+    } else {
+      // Dibuja la línea completa si no es un comentario
+      const words = line.split(/(\s+)/);
+      let x = padding;
+      words.forEach((word) => {
+        context.fillStyle = colorKeyword(word.trim());
+        context.fillText(word, x, y);
+        x += context.measureText(word).width;
+      });
+    }
     y += lineHeight;
   });
 

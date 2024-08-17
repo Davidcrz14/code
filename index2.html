@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparador de Algoritmos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script>
+      // Configuración de Tailwind CSS para el modo oscuro
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                100: "#1E2028",
+                200: "#2D303E",
+                300: "#3C4051",
+              },
+            },
+            transitionTimingFunction: {
+              "bounce-ease": "cubic-bezier(0.8, -0.5, 0.2, 1.5)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .highlight-diff {
+        background-color: #4b121a; /* Color de resaltado para diferencias */
+        animation: animate__animated animate__flash;
+      }
+      .highlight-sim {
+        background-color: #0d5e13; /* Color de resaltado para similitudes */
+        animation: animate__animated animate__flash;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-100 text-gray-200 min-h-screen flex flex-col">
+    <header class="bg-dark-200 text-gray-100 py-4 shadow-md">
+      <div class="container mx-auto px-4 animate__animated animate__fadeInDown">
+        <h1 class="text-3xl font-bold text-blue-400 text-center">
+          Comparador de Algoritmos
+        </h1>
+      </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-6">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 animate__animated animate__fadeInUp"
+      >
+        <div
+          class="bg-dark-200 p-6 rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+        >
+          <h2 class="text-xl font-semibold mb-4">Versión 1</h2>
+          <textarea
+            id="code1"
+            class="w-full h-64 p-3 border border-gray-600 rounded-lg bg-dark-300 text-gray-200 focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+            placeholder="Ingresa el primer algoritmo aquí..."
+          ></textarea>
+        </div>
+        <div
+          class="bg-dark-200 p-6 rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+        >
+          <h2 class="text-xl font-semibold mb-4">Versión 2</h2>
+          <textarea
+            id="code2"
+            class="w-full h-64 p-3 border border-gray-600 rounded-lg bg-dark-300 text-gray-200 focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+            placeholder="Ingresa el segundo algoritmo aquí..."
+          ></textarea>
+        </div>
+      </div>
+      <div class="flex justify-center mb-6">
+        <button
+          id="compareButton"
+          class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 animate__animated animate__pulse"
+        >
+          Comparar
+        </button>
+      </div>
+      <div
+        id="comparisonResult"
+        class="bg-dark-200 p-6 rounded-lg shadow-lg animate__animated animate__fadeInUp"
+      >
+        <h2 class="text-xl font-semibold mb-4">Resultado Comparación</h2>
+        <pre id="output" class="whitespace-pre-wrap"></pre>
+      </div>
+      <div
+        class="mt-6 bg-dark-200 p-6 rounded-lg shadow-lg animate__animated animate__fadeInUp"
+      >
+        <h2 class="text-xl font-semibold mb-4">Notas y Comentarios</h2>
+        <textarea
+          id="comments"
+          class="w-full h-40 p-3 border border-gray-600 rounded-lg bg-dark-300 text-gray-200 focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+          placeholder="Agrega tus notas y comentarios aquí..."
+        ></textarea>
+      </div>
+    </main>
+    <footer
+      class="bg-dark-200 text-gray-400 py-4 text-center animate__animated animate__fadeIn"
+    >
+      <p>Creado por <span class="font-bold text-blue-400">Tu Nombre</span></p>
+      <p class="mt-2">© 2024 - Comparador de Algoritmos</p>
+    </footer>
+    <script src="script2.js"></script>
+  </body>
+</html>
