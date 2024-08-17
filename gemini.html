@@ -11,6 +11,11 @@
     />
     <link rel="icon" href="nodos-de-ia.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css"
+    />
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -23,12 +28,32 @@
                 300: "#3C4051",
               },
             },
+            animation: {
+              gradient: "gradient 15s ease infinite",
+            },
+            keyframes: {
+              gradient: {
+                "0%, 100%": {
+                  "background-size": "200% 200%",
+                  "background-position": "left center",
+                },
+                "50%": {
+                  "background-size": "200% 200%",
+                  "background-position": "right center",
+                },
+              },
+            },
           },
         },
       };
     </script>
     <style>
-      @keyframes gradientBG {
+      .gradient-bg {
+        background: linear-gradient(-45deg, #1e2028, #2d303e, #3c4051, #4b5066);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      @keyframes gradient {
         0% {
           background-position: 0% 50%;
         }
@@ -39,35 +64,30 @@
           background-position: 0% 50%;
         }
       }
-      .gradient-bg {
-        background: linear-gradient(-45deg, #1e2028, #2d303e, #3c4051, #4b5066);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-      }
     </style>
   </head>
   <body class="bg-dark-100 text-gray-200 min-h-screen flex flex-col">
-    <nav class="bg-dark-300 shadow-lg gradient-bg">
+    <nav class="bg-dark-300 shadow-lg gradient-bg animate-gradient">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <a href="#" class="flex-shrink-0 flex items-center">
               <img class="h-8 w-auto" src="imagen.png" alt="DavC Logo" />
-              <span class="ml-2 text-xl font-bold text-blue-400"
-                >DavC Analizer</span
+              <span
+                class="ml-2 text-xl font-bold text-blue-400 animate__animated animate__fadeIn"
+                >DavC Analyzer</span
               >
             </a>
           </div>
-          <div class="flex items-center">
+          <div class="flex items-center space-x-4">
             <a
               href="index.html"
               class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn"
               >Home</a
             >
-
             <a
               href="#"
-              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-2s"
+              class="text-gray-300 hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-1s"
               >Analyzer</a
             >
           </div>
@@ -83,7 +103,7 @@
           <h1
             class="text-4xl font-bold mb-6 text-center text-blue-400 animate__animated animate__pulse animate__infinite"
           >
-            DavAnalizer
+            DavAnalyzer
           </h1>
           <div class="mb-6">
             <label for="inputQuestion" class="block text-gray-300 mb-2 text-lg">
@@ -96,19 +116,27 @@
               placeholder="Escribe la descripción del código aquí..."
             ></textarea>
           </div>
-          <button
-            id="submitButton"
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 animate__animated animate__pulse animate__infinite"
-          >
-            Analizar
-          </button>
+          <div class="flex space-x-4">
+            <button
+              id="submitButton"
+              class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 animate__animated animate__pulse animate__infinite"
+            >
+              Analizar
+            </button>
+            <button
+              id="learnModeButton"
+              class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 animate__animated animate__pulse animate__infinite"
+            >
+              Modo Aprendizaje
+            </button>
+          </div>
           <div class="mt-6">
             <label for="responseText" class="block text-gray-300 mb-2 text-lg">
               Respuesta del Análisis:
             </label>
             <div
               id="responseText"
-              class="w-full p-4 text-lg bg-dark-300 rounded-lg border border-gray-600 min-h-[200px] max-h-[400px] overflow-y-auto focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+              class="w-full p-4 text-lg bg-dark-300 rounded-lg border border-gray-600 min-h-[200px] max-h-[400px] overflow-y-auto focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out prose prose-invert"
             >
               El análisis del código aparecerá aquí...
             </div>
@@ -121,21 +149,50 @@
       class="mt-8 text-center text-gray-400 animate__animated animate__fadeInUp p-4"
     >
       <p>Creado por <span class="font-bold text-blue-400">DavC</span></p>
-      <p class="mt-2">&copy; 2024- Sin nada que Hacer</p>
+      <p class="mt-2">&copy; 2024 - Sin nada que Hacer</p>
     </footer>
+
+    <!-- Modal -->
+    <div
+      id="cooldownModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center"
+    >
+      <div class="bg-dark-200 p-8 rounded-lg shadow-xl max-w-md w-full">
+        <h2 class="text-2xl font-bold mb-4 text-blue-400">
+          ¡Ey ey ey, más despacio!
+        </h2>
+        <p class="mb-4">
+          Vas a saturar el modelo. Espera un poco *10 segundos*.
+        </p>
+        <img
+          src="anime.gif"
+          alt="Anime GIF"
+          class="w-full h-auto mb-4 rounded"
+          style="width: 100px"
+        />
+        <button
+          id="closeModal"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Entendido
+        </button>
+      </div>
+    </div>
 
     <script type="module">
       import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
       const API_KEY = "AIzaSyBFwb4V-OJrWNoJmBob26E4JCsVjvSQiUE";
       const genAI = new GoogleGenerativeAI(API_KEY);
+
+      // Modelo para análisis general
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-pro",
         systemInstruction: `
 You are a bot specialized in Pseudocode and Pseint. Always provide your answers in Spanish.
 Your primary task is to review pseudocode and provide a complete analysis. If the user provides
 valid pseudocode, follow this process:
-
+- Use Markdown and code formatting where necessary
 Review Format:
 Presentacion: "**Hola soy DavBot**💻"
 
@@ -144,38 +201,102 @@ Presentacion: "**Hola soy DavBot**💻"
 3. Sign off with '**DavBot ha terminado su trabajo**🦉'
 
 If the input provided by the user is not related to pseudocode:
-1. Respond with: "Lo siento, solo fui entrenado para revisar pseudocódigo en Pseint y no puedo responder otras preguntas. '2 line break' \nComunicate con David Si quieres Más informacion de como me entreno (●'◡'●) "
+1. Respond with: "Lo siento, solo fui entrenado para revisar pseudocódigo en Pseint y no puedo responder otras preguntas. '2 line break' \nComunicate con David Si quieres Más informacion de como me entreno (●'◡'●)"
 
 2. Do not provide any further response beyond this.
 `,
         temperature: 0.4,
       });
 
-      document
-        .getElementById("submitButton")
-        .addEventListener("click", async () => {
-          const description = document.getElementById("inputQuestion").value;
-          const responseText = document.getElementById("responseText");
+      // Modelo para Modo Aprendizaje
+      const learnModel = genAI.getGenerativeModel({
+        model: "gemini-1.5-pro",
+        systemInstruction: `
+You are a teaching assistant specialized in Pseudocode and Pseint. Always provide your explanations in Spanish.
+Your task is to break down the pseudocode provided by the user into detailed, step-by-step blocks, explaining each part
+in an easy-to-understand manner.
+- Use Markdown and code formatting where necessary
+Explanation Format:
+1. Descripción paso a paso del pseudocódigo.
+2. Explicación detallada de cada bloque de código.
+3. Ejemplos adicionales si es necesario.
 
-          if (description.trim() === "") {
-            alert("Por favor, ingresa una descripción del código.");
-            return;
-          }
+Make sure the explanation is clear and accessible for beginners.
 
-          responseText.innerHTML =
-            '<div class="animate-pulse">Analizando...</div>';
+If the input provided by the user is not related to pseudocode:
+1. Respond with: "Amigo entiende, solo fui entrenado para Explicar codigo en este modo, no para platicar. '2 line break' \n Pronto estara un chatbot para que puedas platicar (●'◡'●)"
 
-          try {
-            const result = await model.generateContent(description);
-            const markdownText = result.response.text();
-            const htmlContent = marked.parse(markdownText);
-            responseText.innerHTML = htmlContent;
-            responseText.classList.add("animate__animated", "animate__fadeIn");
-          } catch (error) {
-            console.error("Error generando el código:", error);
-            responseText.textContent = "Error generando el código.";
-          }
+2. Do not provide any further response beyond this.
+`,
+        temperature: 0.5,
+      });
+
+      function renderMarkdown(text) {
+        const htmlContent = marked.parse(text);
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = htmlContent;
+
+        tempDiv.querySelectorAll("pre code").forEach((block) => {
+          hljs.highlightElement(block);
         });
+
+        return tempDiv.innerHTML;
+      }
+
+      const submitButton = document.getElementById("submitButton");
+      const learnModeButton = document.getElementById("learnModeButton");
+      const cooldownModal = document.getElementById("cooldownModal");
+      const closeModal = document.getElementById("closeModal");
+
+      let lastClickTime = 0;
+      const cooldownTime = 10000; // 10 segundos en milisegundos
+
+      function showCooldownModal() {
+        cooldownModal.classList.remove("hidden");
+        cooldownModal.classList.add("flex");
+      }
+
+      function hideCooldownModal() {
+        cooldownModal.classList.add("hidden");
+        cooldownModal.classList.remove("flex");
+      }
+
+      closeModal.addEventListener("click", hideCooldownModal);
+
+      async function handleButtonClick(modelFunction) {
+        const currentTime = Date.now();
+        if (currentTime - lastClickTime < cooldownTime) {
+          showCooldownModal();
+          return;
+        }
+
+        lastClickTime = currentTime;
+        const description = document.getElementById("inputQuestion").value;
+        const responseText = document.getElementById("responseText");
+
+        if (description.trim() === "") {
+          alert("Por favor, ingresa una descripción del código.");
+          return;
+        }
+
+        responseText.innerHTML =
+          '<div class="animate-pulse">Procesando, este modo puede tardar un poco por el analisis...</div>';
+
+        try {
+          const result = await modelFunction.generateContent(description);
+          const markdownText = result.response.text();
+          responseText.innerHTML = renderMarkdown(markdownText);
+          responseText.classList.add("animate__animated", "animate__fadeIn");
+        } catch (error) {
+          console.error("Error generando el contenido:", error);
+          responseText.textContent = "Error generando el contenido.";
+        }
+      }
+
+      submitButton.addEventListener("click", () => handleButtonClick(model));
+      learnModeButton.addEventListener("click", () =>
+        handleButtonClick(learnModel)
+      );
     </script>
   </body>
 </html>
