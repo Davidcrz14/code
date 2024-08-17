@@ -195,12 +195,12 @@
     <script type="module">
       import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
-      const API_KEY = "AIzaSyBFwb4V-OJrWNoJmBob26E4JCsVjvSQiUE";
+      const API_KEY = "AIzaSyDsuQ-FWiCuBYzm7x-DdG3Cy0Eq1gyBkCY";
       const genAI = new GoogleGenerativeAI(API_KEY);
 
       // Modelo para análisis general
       const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-pro",
+        model: "gemini-1.5-flash",
         systemInstruction: `
   You are a bot specialized in Pseudocode and Pseint. Always provide your answers in Spanish.
   Your primary task is to review pseudocode and provide a complete analysis. If the user provides
