@@ -47,81 +47,92 @@ document.getElementById("generateImage").addEventListener("click", function () {
   function colorKeyword(word) {
     const keywords = {
       // Estructuras de control
-      Algoritmo: "#c678dd",
-      FinAlgoritmo: "#c678dd",
-      Si: "#c678dd",
-      Entonces: "#c678dd",
-      SiNo: "#c678dd",
-      FinSi: "#c678dd",
-      Para: "#c678dd",
-      Hasta: "#c678dd",
-      Con: "#c678dd",
-      Paso: "#c678dd",
-      FinPara: "#c678dd",
-      Mientras: "#c678dd",
-      Hacer: "#c678dd",
-      FinMientras: "#c678dd",
-      Repetir: "#c678dd",
-      "Hasta Que": "#c678dd",
-      Segun: "#c678dd",
-      "De Otro Modo": "#c678dd",
-      FinSegun: "#c678dd",
+      Algoritmo: "#c678dd", // Morado
+      FinAlgoritmo: "#e06c75", // Rojo claro
+      Si: "#61afef", // Azul claro
+      Entonces: "#98c379", // Verde
+      SiNo: "#e5c07b", // Amarillo claro
+      FinSi: "#d19a66", // Naranja
+      Para: "#56b6c2", // Turquesa
+      Hasta: "#8a3fa3", // Púrpura oscuro
+      Con: "#c678dd", // Morado
+      Paso: "#4f88c7", // Azul cielo
+      FinPara: "#d19a66", // Naranja
+      Mientras: "#e06c75", // Rojo claro
+      Hacer: "#61afef", // Azul claro
+      FinMientras: "#98c379", // Verde
+      Repetir: "#c678dd", // Morado
+      "Hasta Que": "#e5c07b", // Amarillo claro
+      Segun: "#d19a66", // Naranja
+      "De Otro Modo": "#56b6c2", // Turquesa
+      FinSegun: "#c678dd", // Morado
 
       // Declaraciones y tipos
-      Definir: "#61afef",
-      Como: "#61afef",
-      Dimension: "#61afef",
-      Entero: "#56b6c2",
-      Real: "#56b6c2",
-      Logico: "#56b6c2",
-      Caracter: "#56b6c2",
-      Cadena: "#56b6c2",
-      Numero: "#56b6c2",
+      Definir: "#e06c75", // Rojo claro
+      Como: "#61afef", // Azul claro
+      Dimension: "#98c379", // Verde
+      Entero: "#d19a66", // Naranja
+      Real: "#56b6c2", // Turquesa
+      Logico: "#e5c07b", // Amarillo claro
+      Caracter: "#c678dd", // Morado
+      Cadena: "#61afef", // Azul claro
+      Numero: "#4f88c7", // Azul cielo
+      Decimal: "#8a3fa3", // Púrpura oscuro
 
       // Entrada/Salida
-      Escribir: "#98c379",
-      Leer: "#98c379",
-      Imprimir: "#98c379",
+      Escribir: "#98c379", // Verde
+      Leer: "#e06c75", // Rojo claro
+      Imprimir: "#61afef", // Azul claro
+      Mostrar: "#c678dd", // Morado
 
       // Operadores
-      Y: "#c678dd",
-      O: "#c678dd",
-      NO: "#c678dd",
-      MOD: "#56b6c2",
-      "^": "#56b6c2",
+      Y: "#d19a66", // Naranja
+      O: "#56b6c2", // Turquesa
+      NO: "#e06c75", // Rojo claro
+      MOD: "#c678dd", // Morado
+      "^": "#4f88c7", // Azul cielo
 
       // Funciones matemáticas
-      Abs: "#d19a66",
-      Sen: "#d19a66",
-      Cos: "#d19a66",
-      Tan: "#d19a66",
-      Asen: "#d19a66",
-      Acos: "#d19a66",
-      Atan: "#d19a66",
-      Ln: "#d19a66",
-      Exp: "#d19a66",
-      Raiz: "#d19a66",
-      Pi: "#d19a66",
-      Aleatorio: "#d19a66",
-      Azar: "#d19a66",
+      Abs: "#d19a66", // Naranja
+      Sen: "#61afef", // Azul claro
+      Cos: "#e06c75", // Rojo claro
+      Tan: "#98c379", // Verde
+      Asen: "#c678dd", // Morado
+      Acos: "#d19a66", // Naranja
+      Atan: "#4f88c7", // Azul cielo
+      Ln: "#8a3fa3", // Púrpura oscuro
+      Exp: "#56b6c2", // Turquesa
+      Raiz: "#e5c07b", // Amarillo claro
+      Pi: "#e06c75", // Rojo claro
+      Aleatorio: "#c678dd", // Morado
+      Azar: "#d19a66", // Naranja
 
       // Funciones de cadenas
-      Longitud: "#d19a66",
-      Subcadena: "#d19a66",
-      Mayusculas: "#d19a66",
-      Minusculas: "#d19a66",
-      ConvertirANumero: "#d19a66",
-      ConvertirATexto: "#d19a66",
+      Longitud: "#4f88c7", // Azul cielo
+      Subcadena: "#56b6c2", // Turquesa
+      Mayusculas: "#98c379", // Verde
+      Minusculas: "#c678dd", // Morado
+      ConvertirANumero: "#e5c07b", // Amarillo claro
+      ConvertirATexto: "#e06c75", // Rojo claro
 
       // Otros
-      Verdadero: "#d19a66",
-      Falso: "#d19a66",
-      Funcion: "#c678dd",
-      FinFuncion: "#c678dd",
-      Procedimiento: "#c678dd",
-      FinProcedimiento: "#c678dd",
-      Retornar: "#c678dd",
+      Verdadero: "#61afef", // Azul claro
+      Falso: "#d19a66", // Naranja
+      Funcion: "#c678dd", // Morado
+      FinFuncion: "#e06c75", // Rojo claro
+      Procedimiento: "#56b6c2", // Turquesa
+      FinProcedimiento: "#98c379", // Verde
+      Retornar: "#c678dd", // Morado
+      // Nuevas palabras clave
+      LimpiarPantalla: "#4f88c7", // Azul cielo
+      Esperar: "#e5c07b", // Amarillo claro
+      Segundos: "#8a3fa3", // Púrpura oscuro
+      Milisegundos: "#61afef", // Azul claro
+      TocarMusica: "#d19a66", // Naranja
+      Subproceso: "#c678dd", // Morado
+      FinSubproceso: "#56b6c2", // Turquesa
     };
+
     return keywords[word] || "#abb2bf";
   }
 
