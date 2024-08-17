@@ -162,7 +162,8 @@
           ¡Ey ey ey, más despacio!
         </h2>
         <p class="mb-4">
-          Vas a saturar el modelo. Espera un poco *10 segundos*.
+          Vas a saturar el modelo. <br />
+          Espera un poco *10 segundos*
         </p>
         <img
           src="anime.gif"
@@ -172,9 +173,9 @@
         />
         <button
           id="closeModal"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="bg-pink-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
-          Entendido
+          Oki
         </button>
       </div>
     </div>
@@ -189,22 +190,22 @@
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-pro",
         systemInstruction: `
-You are a bot specialized in Pseudocode and Pseint. Always provide your answers in Spanish.
-Your primary task is to review pseudocode and provide a complete analysis. If the user provides
-valid pseudocode, follow this process:
-- Use Markdown and code formatting where necessary
-Review Format:
-Presentacion: "**Hola soy DavBot**💻"
+  You are a bot specialized in Pseudocode and Pseint. Always provide your answers in Spanish.
+  Your primary task is to review pseudocode and provide a complete analysis. If the user provides
+  valid pseudocode, follow this process:
+  - Use Markdown and code formatting where necessary
+  Review Format:
+  Presentacion: "**Hola soy DavBot**💻"
 
-1. Qué hace el Programa: [explain what it does]
-2. Errores de Lógica: [If there are any, write down the errors; otherwise, state that it's fine]
-3. Sign off with '**DavBot ha terminado su trabajo**🦉'
+  1. Qué hace el Programa: [explain what it does]
+  2. Errores de Lógica: [If there are any, write down the errors; otherwise, state that it's fine]
+  3. Sign off with '**DavBot ha terminado su trabajo**🦉'
 
-If the input provided by the user is not related to pseudocode:
-1. Respond with: "Lo siento, solo fui entrenado para revisar pseudocódigo en Pseint y no puedo responder otras preguntas. '2 line break' \nComunicate con David Si quieres Más informacion de como me entreno (●'◡'●)"
+  If the input provided by the user is not related to pseudocode:
+  1. Respond with: "Lo siento, solo fui entrenado para revisar pseudocódigo en Pseint y no puedo responder otras preguntas. '2 line break' \nComunicate con David Si quieres Más informacion de como me entreno (●'◡'●)"
 
-2. Do not provide any further response beyond this.
-`,
+  2. Do not provide any further response beyond this.
+  `,
         temperature: 0.4,
       });
 
@@ -212,22 +213,22 @@ If the input provided by the user is not related to pseudocode:
       const learnModel = genAI.getGenerativeModel({
         model: "gemini-1.5-pro",
         systemInstruction: `
-You are a teaching assistant specialized in Pseudocode and Pseint. Always provide your explanations in Spanish.
-Your task is to break down the pseudocode provided by the user into detailed, step-by-step blocks, explaining each part
-in an easy-to-understand manner.
-- Use Markdown and code formatting where necessary
-Explanation Format:
-1. Descripción paso a paso del pseudocódigo.
-2. Explicación detallada de cada bloque de código.
-3. Ejemplos adicionales si es necesario.
+  You are a teaching assistant specialized in Pseudocode and Pseint. Always provide your explanations in Spanish.
+  Your task is to break down the pseudocode provided by the user into detailed, step-by-step blocks, explaining each part
+  in an easy-to-understand manner.
+  - Use Markdown and code formatting where necessary
+  Explanation Format:
+  1. Descripción paso a paso del pseudocódigo.
+  2. Explicación detallada de cada bloque de código.
+  3. Ejemplos adicionales si es necesario.
 
-Make sure the explanation is clear and accessible for beginners.
+  Make sure the explanation is clear and accessible for beginners.
 
-If the input provided by the user is not related to pseudocode:
-1. Respond with: "Amigo entiende, solo fui entrenado para Explicar codigo en este modo, no para platicar. '2 line break' \n Pronto estara un chatbot para que puedas platicar (●'◡'●)"
+  If the input provided by the user is not related to pseudocode:
+  1. Respond with: "Amigo entiende, solo fui entrenado para Explicar codigo en este modo, no para platicar. '2 line break' \n Pronto estara un chatbot para que puedas platicar (●'◡'●)"
 
-2. Do not provide any further response beyond this.
-`,
+  2. Do not provide any further response beyond this.
+  `,
         temperature: 0.5,
       });
 
@@ -280,7 +281,7 @@ If the input provided by the user is not related to pseudocode:
         }
 
         responseText.innerHTML =
-          '<div class="animate-pulse">Procesando, este modo puede tardar un poco por el analisis...</div>';
+          '<div class="animate-pulse">Procesando, este modo puede tardar un poco por el analisis...No presionar nuevamente, espere </div>';
 
         try {
           const result = await modelFunction.generateContent(description);
